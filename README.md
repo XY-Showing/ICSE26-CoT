@@ -1,14 +1,16 @@
 # CoT: Correlation Tuning for Fairness-Performance Trade-Off in ML Software
 
-[![Paper](https://img.shields.io/badge/Paper-ICSE%202026-blue)](https://doi.org/xxxx)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/pdf/2512.21348)
 [![Python](https://img.shields.io/badge/Python-3.12-green)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![License](https://img.shields.io/badge/License-CC%20BY%204.0-yellow)](http://creativecommons.org/licenses/by/4.0/)
 
 > **Fairness Is Not Just Ethical: Performance Trade-Off via Data Correlation Tuning to Mitigate Bias in ML Software**
 > 
-> *Accepted at ICSE 2026*
+> *Ying Xiao, Shangwen Wang, Sicen Liu, Dingyuan Xue, Xian Zhan, Yepang Liu, Jie M. Zhang*
+>
+> *ICSE 2026 (April 12-18, 2026, Rio de Janeiro, Brazil)*
 
-This repository provides the replication package for our ICSE 2026 paper. CoT (Correlation Tuning) is a pre-processing bias mitigation approach that tunes the correlation between sensitive attributes and class labels in training data to achieve a better fairness-performance trade-off.
+This repository provides the replication package for our ICSE 2026 paper. **CoT (Correlation Tuning)** is a pre-processing bias mitigation approach that tunes the correlation between sensitive attributes and class labels in training data to achieve a better fairness-performance trade-off.
 
 ![CoT Overview](CoT_Overview.png)
 
@@ -19,12 +21,12 @@ This repository provides the replication package for our ICSE 2026 paper. CoT (C
 - [Repository Structure](#-repository-structure)
 - [Experimental Environment](#-experimental-environment)
 - [Datasets](#-datasets)
-- [Replication Guide](#-replication-guide)
-  - [RQ1: Single-Attribute Fairness](#rq1-single-attribute-fairness)
+- [Research Questions & Replication](#-research-questions--replication)
+  - [RQ1: Impact on Performance and Fairness](#rq1-impact-on-performance-and-fairness)
   - [RQ2: Comparison with State-of-the-Art](#rq2-comparison-with-state-of-the-art)
-  - [RQ3: Multi-Attribute Fairness](#rq3-multi-attribute-fairness)
-  - [RQ4: Generalization to Deep Learning and LLMs](#rq4-generalization-to-deep-learning-and-llms)
-  - [RQ5: Trade-Off Analysis](#rq5-trade-off-analysis)
+  - [RQ3: Performance-Fairness Trade-Off](#rq3-performance-fairness-trade-off)
+  - [RQ4: Multiple Sensitive Attributes](#rq4-multiple-sensitive-attributes)
+  - [RQ5: Robustness Analysis](#rq5-robustness-analysis)
 - [Results](#-results)
 - [Citation](#-citation)
 - [Acknowledgments](#-acknowledgments)
@@ -36,14 +38,14 @@ This repository provides the replication package for our ICSE 2026 paper. CoT (C
 ```
 ICSE26-CoT/
 ├── CoT_Overview.png                    # Overview figure of CoT approach
-├── Preprint-CoT.pdf                    # Preprint of the paper
+├── Preprint-CoT.pdf                    # Paper preprint
 ├── README.md                           # This file
 └── CoT_Materia_New.zip                 # Replication materials (extract before use)
     │
     ├── 1_CoT_Code/                     # Source code
     │   ├── SingleAttr/                 # Single protected attribute experiments
-    │   │   ├── CoT_Phi.py              # CoT with fixed α (Φ-coefficient based)
-    │   │   ├── CoT_Opt.py              # CoT with optimized α (PSO-based)
+    │   │   ├── CoT_Phi.py              # CoT with Φ-coefficient based α
+    │   │   ├── CoT_Opt.py              # CoT with PSO-optimized α
     │   │   ├── CoT_Phi_dl.py           # CoT_Phi for deep learning models
     │   │   ├── CoT_Opt_dl.py           # CoT_Opt for deep learning models
     │   │   ├── CoT_Phi_Para.py         # Parameter search for CoT_Phi
@@ -52,21 +54,19 @@ ICSE26-CoT/
     │   │   ├── utility.py              # ML classifiers (LR, RF, SVM, XGB, LGBM)
     │   │   └── utility_dl.py           # Deep learning model architecture
     │   │
-    │   └── MultiAttr/                  # Multiple protected attributes experiments
+    │   └── MultiAttr/                  # Multiple protected attributes experiments (RQ4)
     │       ├── Cot_Phi.py              # CoT_Phi for multi-attribute protection
     │       ├── Cot_Opt.py              # CoT_Opt for multi-attribute protection
-    │       ├── Cot_Phi_dl.py           # Multi-attr CoT_Phi for DL
-    │       ├── Cot_Opt_dl.py           # Multi-attr CoT_Opt for DL
     │       ├── Measure_new.py          # Multi-attr fairness metrics
     │       └── ...
     │
     ├── 2_ResultForPaper/               # Aggregated results for paper tables/figures
-    │   ├── RQ1_result.txt              # Results for RQ1 (Table 1)
-    │   ├── RQ2_result                  # Results for RQ2 (Tables 4-5)
-    │   ├── RQ3_result                  # Results for RQ3 (Figure 1)
-    │   ├── RQ4_result1                 # Results for RQ4 (Tables 2-3)
-    │   ├── RQ4_result2                 # Additional RQ4 results
-    │   ├── RQ5_result1.txt             # Results for RQ5
+    │   ├── RQ1_result.txt              # Results for RQ1 (Table 4)
+    │   ├── RQ2_result                  # Results for RQ2 (Tables 5-6)
+    │   ├── RQ3_result                  # Results for RQ3 (Figure 2)
+    │   ├── RQ4_result1                 # Results for RQ4 (Tables 7-8)
+    │   ├── RQ4_result2                 # RQ4 intersectional bias results
+    │   ├── RQ5_result*.txt             # Results for RQ5 (Tables 9-10)
     │   └── all_metrics_effect.txt      # Effect size analysis
     │
     ├── 3_RawResult/                    # Raw experimental results
@@ -75,14 +75,13 @@ ICSE26-CoT/
     │   └── LLM/                        # LLM experiment results (17 files)
     │
     ├── 4_MOO_Exploration/              # Multi-objective optimization exploration
-    │   ├── CoT_Opt_Para.py             # Combined fairness metrics
+    │   ├── CoT_Opt_Para.py             # Combined fairness metrics optimization
     │   ├── CoT_Opt_Para_SPD.py         # SPD-focused optimization
     │   ├── CoT_Opt_Para_AOD.py         # AOD-focused optimization
     │   └── CoT_Opt_Para_EOD.py         # EOD-focused optimization
     │
     ├── 5_FinedTinyLlama/               # LLM fine-tuning experiments
     │   ├── Fine-tune-Script.ipynb      # Jupyter notebook for TinyLlama fine-tuning
-    │   ├── CoT_Opt_Para.json           # Optimal α parameters
     │   └── Dataset_TempFile/           # Preprocessed data for LLM
     │
     └── 6_Dataset/                      # Preprocessed datasets
@@ -130,9 +129,7 @@ pip install protobuf==3.20.0
 3. **For deep learning experiments** (optional):
 
 ```bash
-pip install tensorflow>=2.0
-# or
-pip install keras
+pip install tensorflow keras
 ```
 
 4. **For LLM experiments** (optional):
@@ -155,14 +152,11 @@ We evaluate CoT on **five** benchmark datasets commonly used in ML fairness rese
 | **MEPS-15** (mep1) | Healthcare utilization | Sex, Race | 15,830 | 138 |
 | **MEPS-16** (mep2) | Healthcare utilization | Sex, Race | 15,675 | 138 |
 
-All datasets are preprocessed and included in `6_Dataset/`. The preprocessing scripts handle:
-- Binary encoding of protected attributes
-- Label standardization to `Probability` column
-- Missing value handling
+All datasets are preprocessed and included in `6_Dataset/`. 
 
 ---
 
-## 🚀 Replication Guide
+## 🔬 Research Questions & Replication
 
 First, extract the replication materials:
 
@@ -171,129 +165,113 @@ unzip "CoT_Materia_New.zip"
 cd CoT_Materia_New/1_CoT_Code/SingleAttr
 ```
 
-### RQ1: Single-Attribute Fairness
+### RQ1: Impact on Performance and Fairness
 
-**Goal**: Evaluate CoT's effectiveness in mitigating bias for a single protected attribute.
+> **RQ1**: *What is the impact of CoT on model performance and fairness?*
 
-**Scripts**: 
-- `CoT_Phi.py` - Uses Φ-coefficient to determine the tuning parameter α
-- `CoT_Opt.py` - Uses PSO to optimize α
+This RQ investigates the quantitative impact of CoT on model performance and fairness by comparing various metrics between CoT-enhanced models and original models without bias mitigation.
 
-**Arguments**:
+**Scripts**: `CoT_Phi.py`, `CoT_Opt.py`
+
 | Argument | Description | Options |
 |----------|-------------|---------|
 | `-d` | Dataset | `adult`, `compas`, `default`, `mep1`, `mep2` |
 | `-c` | ML Classifier | `lr`, `rf`, `svm`, `xgb`, `lgbm` |
-| `-p` | Protected Attribute | Dataset-dependent (e.g., `sex`, `race`, `age`) |
+| `-p` | Protected Attribute | `sex`, `race`, `age` |
 
 **Example Commands**:
 
 ```bash
-# CoT_Phi with different classifiers
+# CoT-Phi (Φ-coefficient based)
 python CoT_Phi.py -d adult -c lr -p sex
 python CoT_Phi.py -d adult -c rf -p race
 python CoT_Phi.py -d compas -c svm -p sex
-python CoT_Phi.py -d default -c lr -p age
-python CoT_Phi.py -d mep1 -c rf -p sex
-python CoT_Phi.py -d mep2 -c svm -p race
 
-# CoT_Opt (PSO-optimized)
+# CoT-Opt (PSO-optimized)
 python CoT_Opt.py -d adult -c lr -p sex
 python CoT_Opt.py -d compas -c rf -p race
 ```
 
-**Full experiment** (all combinations):
+**Results**: See `2_ResultForPaper/RQ1_result.txt` (corresponds to **Table 4** in paper)
 
-```bash
-for dataset in adult compas default mep1 mep2; do
-    for clf in lr rf svm; do
-        for attr in sex race age; do
-            python CoT_Phi.py -d $dataset -c $clf -p $attr 2>/dev/null || true
-            python CoT_Opt.py -d $dataset -c $clf -p $attr 2>/dev/null || true
-        done
-    done
-done
-```
+---
 
 ### RQ2: Comparison with State-of-the-Art
 
-We compare CoT with six state-of-the-art bias mitigation methods:
-- **REW** (Reweighing)
-- **ROC** (Reject Option Classification)
-- **ADV** (Adversarial Debiasing)
-- **Fairway**
-- **Fair-SMOTE**
-- **MAAT**
+> **RQ2**: *What is the bias mitigation effectiveness of CoT compared with existing methods?*
+
+This RQ examines the advantages of CoT in bias mitigation compared to existing methods by analyzing SPD, AOD, and EOD fairness metrics improvements.
+
+**Baseline Methods**:
+- Fair-SMOTE, FairGenerate, LTDD
+- FairMask, MirrorFair
 
 The baseline implementations are available at: [MAAT Repository](https://github.com/chenzhenpeng18/FSE22-MAAT)
 
-### RQ3: Multi-Attribute Fairness
+**Results**: See `2_ResultForPaper/RQ2_result` (corresponds to **Tables 5-6** in paper)
 
-**Goal**: Evaluate CoT's ability to simultaneously protect multiple sensitive attributes.
+---
+
+### RQ3: Performance-Fairness Trade-Off
+
+> **RQ3**: *What is the performance-fairness trade-off of CoT compared with existing methods?*
+
+This RQ investigates the advantages of CoT in balancing model performance and fairness using the **Fairea Trade-off** measurement tool, which classifies outcomes into five categories: *win-win*, *good*, *bad*, *inverted*, and *lose-lose*.
+
+**Results**: See `2_ResultForPaper/RQ3_result` (corresponds to **Figure 2** in paper)
+
+---
+
+### RQ4: Multiple Sensitive Attributes
+
+> **RQ4**: *What is the effectiveness of CoT in handling multiple sensitive attributes?*
+
+This RQ examines:
+1. The potential negative side effects on **unconsidered** sensitive attributes
+2. The effectiveness in mitigating **intersectional bias**
 
 **Scripts** (in `MultiAttr/` folder):
 
 ```bash
 cd ../MultiAttr
 
-# Protect both sex and race simultaneously
+# Multi-attribute protection
 python Cot_Phi.py -d adult -c lr
 python Cot_Phi.py -d adult -c rf
 python Cot_Phi.py -d compas -c lr
 python Cot_Phi.py -d compas -c svm
-python Cot_Phi.py -d mep1 -c rf
-python Cot_Phi.py -d mep2 -c rf
 ```
 
-**Note**: Multi-attribute scripts automatically handle both protected attributes defined for each dataset.
+**Note**: Multi-attribute scripts automatically protect both sensitive attributes defined for each dataset.
 
-### RQ4: Generalization to Deep Learning and LLMs
+**Results**: See `2_ResultForPaper/RQ4_result1` and `RQ4_result2` (corresponds to **Tables 7-8** in paper)
 
-#### Deep Learning Models
+---
+
+### RQ5: Robustness Analysis
+
+> **RQ5**: *What is the robustness of CoT under overfitting risks and realistic data conditions?*
+
+This RQ investigates the robustness of CoT by evaluating whether its effectiveness remains consistent under:
+- **Overfitting conditions**: Using modern classifiers like XGBoost
+- **Realistic data conditions**: With noise and distribution shifts
+
+**Deep Learning Experiments**:
 
 ```bash
-cd SingleAttr
-
-# Deep learning with CoT_Phi
 python CoT_Phi_dl.py -d adult -c dl -p sex
-python CoT_Phi_dl.py -d adult -c dl -p race
-python CoT_Phi_dl.py -d compas -c dl -p sex
 python CoT_Phi_dl.py -d compas -c dl -p race
-python CoT_Phi_dl.py -d default -c dl -p sex
-python CoT_Phi_dl.py -d default -c dl -p age
-python CoT_Phi_dl.py -d mep1 -c dl -p sex
-python CoT_Phi_dl.py -d mep1 -c dl -p race
-python CoT_Phi_dl.py -d mep2 -c dl -p sex
-python CoT_Phi_dl.py -d mep2 -c dl -p race
+python CoT_Opt_dl.py -d default -c dl -p age
 ```
 
-#### Large Language Models (TinyLlama)
-
-The LLM experiments use TinyLlama-1.1B with LoRA fine-tuning. Run in Google Colab with GPU:
+**LLM Experiments** (TinyLlama fine-tuning):
 
 ```bash
 cd 5_FinedTinyLlama
-# Open Fine-tune-Script.ipynb in Jupyter/Colab
+# Run Fine-tune-Script.ipynb in Jupyter/Colab with GPU
 ```
 
-The notebook:
-1. Fine-tunes TinyLlama on original and CoT-processed training data
-2. Evaluates fairness metrics on test sets
-3. Compares performance between original and CoT-enhanced models
-
-### RQ5: Trade-Off Analysis
-
-Analyze the fairness-performance trade-off with different weight configurations:
-
-```bash
-cd 4_MOO_Exploration
-
-# Different optimization objectives
-python CoT_Opt_Para.py      # Combined metrics
-python CoT_Opt_Para_SPD.py  # SPD-focused
-python CoT_Opt_Para_AOD.py  # AOD-focused
-python CoT_Opt_Para_EOD.py  # EOD-focused
-```
+**Results**: See `2_ResultForPaper/RQ5_result*.txt` (corresponds to **Tables 9-10** in paper)
 
 ---
 
@@ -302,19 +280,23 @@ python CoT_Opt_Para_EOD.py  # EOD-focused
 ### Output Format
 
 Each experiment generates a `.txt` file with the following metrics:
-- **Performance**: Accuracy, Recall, Precision, F1-score, MCC
-- **Fairness (Primary Attribute)**: SPD, AOD, EOD
-- **Fairness (Secondary Attribute)**: SPD2, AOD2, EOD2
-- **Subgroup Metrics**: TPR/TNR for privileged/unprivileged groups
+
+| Category | Metrics |
+|----------|---------|
+| **Performance** | Accuracy, Recall, Precision, F1-score, MCC |
+| **Fairness (Primary)** | SPD, AOD, EOD |
+| **Fairness (Secondary)** | SPD2, AOD2, EOD2 |
+| **Subgroup** | TPR_P, TPR_U, TNR_P, TNR_U, Acc_P, Acc_U |
 
 ### Key Findings
 
-| Method | Fairness Improvement | Performance Retention |
-|--------|---------------------|----------------------|
-| **CoT_Opt** | 97.8% tasks show decrease | 83.3% with large effect |
-| **CoT_Phi** | 92.2% tasks show decrease | 81.7% with large effect |
-| MirrorFair | 92.2% | 77.8% |
-| FairMask | 90.6% | 67.8% |
+| Metric | CoT-Opt | CoT-Phi | Best Baseline |
+|--------|---------|---------|---------------|
+| Fairness Improvement Rate | **97.8%** | 92.2% | 92.2% (MirrorFair) |
+| Large Effect Size | **83.3%** | 81.7% | 77.8% (MirrorFair) |
+| SPD Reduction | -49% | -54% | -46% (MirrorFair) |
+| AOD Reduction | **-58%** | -55% | -52% (MirrorFair) |
+| EOD Reduction | **-51%** | -41% | -50% (MirrorFair) |
 
 ---
 
@@ -323,14 +305,16 @@ Each experiment generates a `.txt` file with the following metrics:
 If you use this code or data in your research, please cite:
 
 ```bibtex
-@inproceedings{cot2026icse,
+@inproceedings{xiao2026cot,
   title={Fairness Is Not Just Ethical: Performance Trade-Off via Data Correlation Tuning to Mitigate Bias in ML Software},
-  author={[Authors]},
-  booktitle={Proceedings of the 48th International Conference on Software Engineering (ICSE)},
+  author={Xiao, Ying and Wang, Shangwen and Liu, Sicen and Xue, Dingyuan and Zhan, Xian and Liu, Yepang and Zhang, Jie M.},
+  booktitle={Proceedings of the 48th IEEE/ACM International Conference on Software Engineering (ICSE)},
   year={2026},
   organization={IEEE/ACM}
 }
 ```
+
+**arXiv**: https://arxiv.org/abs/2512.21348
 
 ---
 
@@ -343,15 +327,15 @@ We thank the authors of the following works for their open-source contributions:
 - **[Fair-SMOTE](https://doi.org/10.1145/3468264.3468537)** - Chakraborty et al., FSE 2021
 - **[Fairea](https://doi.org/10.1145/3468264.3468565)** - Hort et al., FSE 2021
 - **[MAAT](https://github.com/chenzhenpeng18/FSE22-MAAT)** - Chen et al., FSE 2022
-- **[MirrorFair](https://doi.org/xxxx)** - Recent fairness method
-- **[FairMask](https://doi.org/xxxx)** - Peng et al.
+- **[MirrorFair](https://doi.org/10.1145/3691620.3695509)** - Xiao et al., ASE 2024
+- **[FairMask](https://doi.org/10.1145/3540250.3549093)** - Peng et al., FSE 2022
 
 ---
 
 ## 📧 Contact
 
-For questions or issues, please open an issue on GitHub or contact the authors.
+For questions or issues, please open an issue on GitHub or contact the authors at: ying.1.xiao@kcl.ac.uk
 
 ---
 
-**License**: MIT License
+**License**: [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
