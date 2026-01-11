@@ -23,7 +23,7 @@ This repository provides the replication package for our ICSE 2026 paper. **CoT 
 - [Datasets](#-datasets)
 - [Research Questions & Replication](#-research-questions--replication)
   - [RQ1: Impact on Performance and Fairness](#rq1-impact-on-performance-and-fairness)
-  - [RQ2: Comparison with State-of-the-Art](#rq2-comparison-with-state-of-the-art)
+  - [RQ2: Bias Mitigation Effectiveness](#rq2-bias-mitigation-effectiveness)
   - [RQ3: Performance-Fairness Trade-Off](#rq3-performance-fairness-trade-off)
   - [RQ4: Multiple Sensitive Attributes](#rq4-multiple-sensitive-attributes)
   - [RQ5: Robustness Analysis](#rq5-robustness-analysis)
@@ -196,11 +196,11 @@ python CoT_Opt.py -d compas -c rf -p race
 
 ---
 
-### RQ2: Comparison with State-of-the-Art
+### RQ2: Bias Mitigation Effectiveness
 
 > **RQ2**: *What is the bias mitigation effectiveness of CoT compared with existing methods?*
 
-This RQ examines the advantages of CoT in bias mitigation compared to existing methods by analyzing SPD, AOD, and EOD fairness metrics improvements.
+This RQ examines CoT's effectiveness in mitigating bias by analyzing the proportion of scenarios with fairness improvements and the degree of changes in SPD, AOD, and EOD fairness metrics.
 
 **Baseline Methods**:
 - Fair-SMOTE, FairGenerate, LTDD
