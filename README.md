@@ -1,4 +1,4 @@
-# CoT: Correlation Tuning for Fairness-Performance Trade-Off in ML Software
+# Fairness Is Not Just Ethical: Performance Trade-Off via Data Correlation Tuning to Mitigate Bias in ML Software
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/pdf/2512.21348)
 [![Python](https://img.shields.io/badge/Python-3.12-green)](https://www.python.org/)
