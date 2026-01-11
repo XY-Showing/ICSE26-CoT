@@ -45,7 +45,7 @@ ICSE26-CoT/
     ├── 1_CoT_Code/                     # Source code
     │   ├── SingleAttr/                 # Single protected attribute experiments
     │   │   ├── CoT_Phi.py              # CoT with Φ-coefficient based α
-    │   │   ├── CoT_Opt.py              # CoT with PSO-optimized α
+    │   │   ├── CoT_Opt.py              # CoT with multi-objective optimization α
     │   │   ├── CoT_Phi_dl.py           # CoT_Phi for deep learning models
     │   │   ├── CoT_Opt_dl.py           # CoT_Opt for deep learning models
     │   │   ├── CoT_Phi_Para.py         # Parameter search for CoT_Phi
@@ -187,7 +187,7 @@ python CoT_Phi.py -d adult -c lr -p sex
 python CoT_Phi.py -d adult -c rf -p race
 python CoT_Phi.py -d compas -c svm -p sex
 
-# CoT-Opt (PSO-optimized)
+# CoT-Opt (multi-objective optimization)
 python CoT_Opt.py -d adult -c lr -p sex
 python CoT_Opt.py -d compas -c rf -p race
 ```
