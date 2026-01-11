@@ -323,12 +323,12 @@ If you use this code or data in your research, please cite:
 We thank the authors of the following works for their open-source contributions:
 
 - **[AIF360](https://github.com/Trusted-AI/AIF360)** - IBM AI Fairness 360 toolkit
-- **[Fairway](https://doi.org/10.1145/3368089.3409697)** - Chakraborty et al., ASE 2020
 - **[Fair-SMOTE](https://doi.org/10.1145/3468264.3468537)** - Chakraborty et al., FSE 2021
+- **[FairGenerate](https://doi.org/10.1145/3643755)** - Joshi & Kumar, TOSEM 2024
+- **[LTDD](https://doi.org/10.1145/3510003.3510087)** - Li et al., ICSE 2022
 - **[Fairea](https://doi.org/10.1145/3468264.3468565)** - Hort et al., FSE 2021
-- **[MAAT](https://github.com/chenzhenpeng18/FSE22-MAAT)** - Chen et al., FSE 2022
-- **[MirrorFair](https://doi.org/10.1145/3691620.3695509)** - Xiao et al., ASE 2024
 - **[FairMask](https://doi.org/10.1145/3540250.3549093)** - Peng et al., FSE 2022
+- **[MirrorFair](https://doi.org/10.1145/3691620.3695509)** - Xiao et al., ASE 2024
 
 ---
 
