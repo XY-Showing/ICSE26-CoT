@@ -206,7 +206,6 @@ This RQ examines CoT's effectiveness in mitigating bias by analyzing the proport
 - Fair-SMOTE, FairGenerate, LTDD
 - FairMask, MirrorFair
 
-The baseline implementations are available at: [MAAT Repository](https://github.com/chenzhenpeng18/FSE22-MAAT)
 
 **Results**: See `2_ResultForPaper/RQ2_result` (corresponds to **Tables 5-6** in paper)
 
@@ -324,7 +323,7 @@ We thank the authors of the following works for their open-source contributions:
 
 - **[AIF360](https://github.com/Trusted-AI/AIF360)** - IBM AI Fairness 360 toolkit
 - **[Fair-SMOTE](https://doi.org/10.1145/3468264.3468537)** - Chakraborty et al., FSE 2021
-- **[FairGenerate](https://doi.org/10.1145/3643755)** - Joshi & Kumar, TOSEM 2024
+- **[FairGenerate](https://doi.org/10.1145/3643755)** - Joshi & Kumar, TOSEM 2025
 - **[LTDD](https://doi.org/10.1145/3510003.3510087)** - Li et al., ICSE 2022
 - **[Fairea](https://doi.org/10.1145/3468264.3468565)** - Hort et al., FSE 2021
 - **[FairMask](https://doi.org/10.1145/3540250.3549093)** - Peng et al., FSE 2022
