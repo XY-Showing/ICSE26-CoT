@@ -144,13 +144,13 @@ pip install transformers accelerate peft bitsandbytes
 
 We evaluate CoT on **five** benchmark datasets commonly used in ML fairness research:
 
-| Dataset | Task | Protected Attributes | # Samples | # Features |
-|---------|------|---------------------|-----------|------------|
-| **Adult** | Income prediction | Sex, Race | 48,842 | 14 |
-| **COMPAS** | Recidivism prediction | Sex, Race | 7,214 | 28 |
-| **Default** | Credit default prediction | Sex, Age | 30,000 | 24 |
-| **MEPS-15** (mep1) | Healthcare utilization | Sex, Race | 15,830 | 138 |
-| **MEPS-16** (mep2) | Healthcare utilization | Sex, Race | 15,675 | 138 |
+| Dataset | Task | Protected Attributes | # Samples | 
+|---------|------|---------------------|-----------|
+| **Adult** | Income prediction | Sex, Race | 48,842 | 
+| **COMPAS** | Recidivism prediction | Sex, Race | 7,214 | 
+| **Default** | Credit default prediction | Sex, Age | 30,000 | 
+| **MEPS-15** (mep1) | Healthcare utilization | Sex, Race | 15,830 | 
+| **MEPS-16** (mep2) | Healthcare utilization | Sex, Race | 15,675 | 
 
 All datasets are preprocessed and included in `6_Dataset/`. 
 
