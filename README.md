@@ -326,8 +326,8 @@ We thank the authors of the following works for their open-source contributions:
 - **[FairGenerate](https://dl.acm.org/doi/10.1145/3730579)** - Joshi & Kumar, TOSEM 2025
 - **[LTDD](https://dl.acm.org/doi/10.1145/3510003.3510091)** - Li et al., ICSE 2022
 - **[Fairea](https://doi.org/10.1145/3468264.3468565)** - Hort et al., FSE 2021
-- **[FairMask](https://ieeexplore.ieee.org/document/9951398)** - Peng et al., FSE 2022
-- **[MirrorFair](https://dl.acm.org/doi/10.1145/3660801)** - Xiao et al., ASE 2024
+- **[FairMask](https://ieeexplore.ieee.org/document/9951398)** - Peng et al., TSE 2022
+- **[MirrorFair](https://dl.acm.org/doi/10.1145/3660801)** - Xiao et al., FSE 2024
 
 ---
 
